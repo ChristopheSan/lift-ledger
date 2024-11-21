@@ -78,11 +78,18 @@ function populateExercises() {
         const category = exercise.category;
         categoryElement.textContent = category;
 
+        const linkElement = document.createElement('a');
+        const link = exercise.exampleVideoUrl;
+        linkElement.href = link;
+        linkElement.target = "_blank";
+        linkElement.innerHTML = `<i class="fa-brands fa-youtube fa-xl" style="color: #ff0000;"></i>`;
+ 
+
         // add everything to its container in order
         itemDiv.appendChild(exerciseIDandNameElement);
-        //itemDiv.appendChild(hrElement);
+        itemDiv.appendChild(hrElement);
         itemDiv.appendChild(categoryElement);
-        
+        itemDiv.appendChild(linkElement);
         exerciseContainer.appendChild(itemDiv);
 
     }); // End for each
