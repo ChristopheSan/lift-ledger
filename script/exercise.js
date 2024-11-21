@@ -1,8 +1,13 @@
+
+// Document Level Vars
+let categories = ["All"];
+let exercises = [];
+let fitleredExercises = [];
+
+
 function fetchJSON() {
     // create a container for the exercises
     const exerciseContainer = document.getElementById('exercise-container');
-
-    var categoies = [];
 
     // Fetch returns a Promise containing the response
     fetch("/test-data/all-exercises.json").then((res) => {
@@ -12,32 +17,94 @@ function fetchJSON() {
         }
         return res.json(); // parse as json and return another promise  this is what allows us to do the following line
     }).then(data => { 
-      data.forEach(element => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = ('exercise-item');
-
-            const exerciseIDandNameElement = document.createElement('h3');
-            const name = element.name;
-            const id = element.exerciseId;
-            exerciseIDandNameElement.textContent = `${id} | ${name}`;
-
-            const hrElement = document.createElement('hr');
-            
-            const categoryElement = document.createElement('h4');
-            const category = element.category;
-            categoryElement.textContent = category;
-
-            // add everything to its container in order
-            itemDiv.appendChild(exerciseIDandNameElement);
-            //itemDiv.appendChild(hrElement);
-            itemDiv.appendChild(categoryElement);
-            
-            exerciseContainer.appendChild(itemDiv);
-        });  
+      exercises = data;
+      fitleredExercises = exercises;
+      populateExercises();
+      getCategories();
+      populateFilterValues();
     }).catch(error => console.error('Error fetching JSON:', error));
     
+    // after parsing JSON
+
 }
 
+function getCategories() {
+    exercises.forEach(e => {
+        let category = e.category;
+        if (!categories.includes(category)){
+            categories.push(category);
+        }
+    });
+}
+
+function populateFilterValues() {
+    console.log(categories);
+    const categoryFilter = document.getElementById('category-filter');
+
+    categories.forEach(cat => {
+        // create an option to select based on the values found in all exercises
+        const optionElement = document.createElement('option');
+        optionElement.className = ('excercise-filter-item');
+        optionElement.textContent = `${cat}`;
+
+        categoryFilter.appendChild(optionElement);
+    });
+
+    const filterContainer = document.getElementById('filter-container');
+    filterContainer.appendChild(categoryFilter);
+
+}
+
+// Uses filteredExercises to update what is being shown to the user based on the current filtered category
+
+function populateExercises() {
+    console.log(fitleredExercises);
+    const exerciseContainer = document.getElementById('exercise-container');
+    exerciseContainer.replaceChildren();
+
+    fitleredExercises.forEach(exercise => {
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = ('exercise-item');
+
+        const exerciseIDandNameElement = document.createElement('h3');
+        const name = exercise.name;
+        const id = exercise.exerciseId;
+        exerciseIDandNameElement.textContent = `${id} | ${name}`;
+
+        const hrElement = document.createElement('hr');
+        
+        const categoryElement = document.createElement('h4');
+        const category = exercise.category;
+        categoryElement.textContent = category;
+
+        // add everything to its container in order
+        itemDiv.appendChild(exerciseIDandNameElement);
+        //itemDiv.appendChild(hrElement);
+        itemDiv.appendChild(categoryElement);
+        
+        exerciseContainer.appendChild(itemDiv);
+
+    }); // End for each
+}
+
+function handleFilterChange() {
+    const selectedCategory = document.getElementById('category-filter').value;
+
+    if (selectedCategory === 'All'){
+        fitleredExercises = exercises;
+    }
+    else {
+        fitleredExercises = exercises.filter(
+            (exercise) => exercise.category === selectedCategory
+        );
+
+    }
+    populateExercises();
+}
+
+// fitler change event
+document.getElementById('category-filter').addEventListener('change', handleFilterChange);
 
 fetchJSON();
 
