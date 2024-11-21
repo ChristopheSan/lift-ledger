@@ -1509,6 +1509,12 @@ a {
 }
 
 /* Colors */
+
+/* Chris added */
+.app-trim-color {
+    color: #24b1e5;
+}
+
 .w3-amber,
 .w3-hover-amber:hover {
     color: #000 !important;
