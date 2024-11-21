@@ -1,0 +1,29 @@
+/* exercise container styles */
+#exercise-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#exercise-container {
+    display: grid;
+    grid-auto-columns: 2;
+    column-gap: 2.5rem;
+    row-gap: 2.5rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media  (max-width: 600px) {
+    #exercise-container {
+        display: grid;
+        grid-auto-columns: 1;
+        column-gap: 2.5rem;
+        row-gap: 2.5rem;
+        grid-template-columns: 1fr;  
+    }
+}
+
+.exercise-item {
+    border: .5px solid #fff;
+    padding: 5px;
+}
