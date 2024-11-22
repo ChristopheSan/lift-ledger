@@ -82,7 +82,7 @@ function populateExercises() {
         const link = exercise.exampleVideoUrl;
         linkElement.href = link;
         linkElement.target = "_blank";
-        linkElement.innerHTML = `<i class="fa-brands fa-youtube fa-xl" style="color: #ff0000;"></i>`;
+        linkElement.innerHTML = `<i class="fa-brands fa-youtube fa-lg" style="color: #a6a6a6;"></i>`;
  
 
         // add everything to its container in order
