@@ -1,0 +1,97 @@
+#plan-main-container {
+    align-content: center;
+    height: 100vh;
+    background-color: #2f2f2f;
+    border-radius: 2rem;
+}
+
+/* Container with horizontal scrolling */
+.horizontal-container {
+    display: flex;           /* Use flexbox for horizontal layout */
+    overflow-x: auto;        /* Enable horizontal scrolling */
+    white-space: nowrap;     /* Prevent wrapping */
+    height: 90%;           /* Optional: Full height */
+    align-content: center;
+    gap: 20px;
+}
+
+/* Style the horizontal scrollbar */
+.horizontal-container::-webkit-scrollbar {
+    height: 12px; /* Initial scrollbar height */
+}
+
+.horizontal-container::-webkit-scrollbar-track {
+    background: #e0e0e0b7;  /* Light grey background for the track */
+    margin: 2px;          /* Push the track slightly inward relative to the thumb */
+    border-radius: 6px;   /* Rounded corners for the track */
+}
+
+.horizontal-container::-webkit-scrollbar-thumb {
+    background-color: #726f6fe5;
+    border-radius: 6px; 
+}
+
+.horizontal-container::-webkit-scrollbar-thumb:hover {
+    height: 10px; 
+    background: linear-gradient(90deg, #555, #525252); /* Darker gradient on hover */
+}
+
+
+
+/* Columns styling */
+.workout-day-column {
+    display: flexbox;
+    flex-direction: column;
+
+    flex: 0 0 25%;           /* Each column takes up 25% of the container width */
+    min-width: 250px;        /* Minimum width to ensure consistent sizing */
+    border: .50px solid #ccc;  /* Optional: Column border for visibility */
+    box-sizing: border-box;  /* Include padding and border in width calculation */
+    height: fit-content;            /* Optional: Full container height */
+    padding: 10px;           /* Add padding for better spacing */
+    background-color: #171717; /* Optional: Background color for columns */
+
+    align-content: flex-start;
+    
+}
+
+.column-header {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    grid-template-columns: 1fr .25fr;
+    padding: 10px;
+}
+
+.ll-button {
+    /* border: solid 1px; */
+    display: inline;
+    padding: 8px 8px;
+    vertical-align: center;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap
+}
+
+.day-name-input {
+    border: solid 1px;
+}
+
+#coloumn-data-container {
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.column-data {
+    margin: 15px 10px;
+    border: 1px solid ;
+    border-radius: 1%;
+    min-height: 160px;
+}

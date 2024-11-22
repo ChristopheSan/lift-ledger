@@ -1,0 +1,8 @@
+.button-holder {
+    float: inline-end;
+}
+
+#create-plan-button {
+    float: inline-end;
+    border: .25px solid gray;
+}

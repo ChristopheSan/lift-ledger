@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Your Plans</title>
+<title>Build a Plan</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/viewplans.css">
+<link rel="stylesheet" href="/css/buildplan.css">
 <script src="https://kit.fontawesome.com/27dcbbedd7.js" crossorigin="anonymous"></script>
 
 
@@ -48,6 +48,8 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <i class="fa-regular fa-calendar fa-2xl"></i>
     <p>CALENDAR</p>
   </a>
+
+  
 </nav>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
@@ -64,43 +66,65 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Page Content -->
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
-  <header class="w3-container w3-padding-16 w3-center w3-black" id="home">
-    <h1 class="w3-xxlarge"><span class="w3-hide-small"></span> Plans</h1>
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-2xl"><span class="w3-hide-small"></span> Plans</h1>
     <p class="w3-xlarge" id="">...</p>
   </header>
 
-  <!-- About Section -->
-  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <div class= "w3-container" id="button-holder">
-      <a class="w3-button" id="create-plan-button" href="/pages/buildplan.html">Create a plan</a>
-    </div>
-    <h2 class="w3-text-light-grey">My Name</h2>
-    <hr style="width:200px" class="w3-opacity">
-    <p>Need to show the names of the plans, on click they should have more details and maybe a way to view them day by day...
-    </p>
-    <div></div>
-    <span> Need a way to add a new plan as well - some type of form  </span>
-    <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
-    <p class="w3-wide">Photography</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:95%"></div>
-    </div>
-    <p class="w3-wide">Web Design</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:85%"></div>
+  <div class="w3-container " id="plan-main-container">
+    <div class="horizontal-container">
+        <div class="workout-day-column">Column 1
+            <div class="column-header">
+                <input type="text"  class="ll-button day-name-input" value="Legs 1">
+                <div style="align-content: center; margin-left: 10px;">
+                    <i class="ll-button fa-sharp-duotone fa-solid fa-trash-can fa-lg" style="--fa-primary-opacity: 2;"></i>
+                </div>
+            </div>
+            <!-- excerises selection -->
+            <div id="column-data-container">
+                <div class="column-data">
+                    <div class="column-data-top-row">
+                        <span class="Category"></span>
+                    </div>
+                </div>
+                <div class="column-data">
+                    <div class="column-data-top-row">
+                        <span class="Category"></span>
+                    </div>
+                </div>
+                <div class="column-data">
+                    <div class="column-data-top-row">
+                        <span class="Category"></span>
+                    </div>
+                </div>
+                <div class="column-data">
+                    <div class="column-data-top-row">
+                        <span class="Category"></span>
+                    </div>
+                </div>
+                <div class="column-data">
+                    <div class="column-data-top-row">
+                        <span class="Category"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="add-exercise-button">
+                
+            </div>
+            
+
+        </div>
+        <div class="workout-day-column">Column 2</div>
+        <div class="workout-day-column">Column 3</div>
+        <div class="workout-day-column">Column 4</div>
+        <div class="workout-day-column">Column 5</div>
+        <div class="workout-day-column">Column 6</div>
+        <div class="workout-day-column">Column 7</div>
     </div>
 
-    <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  <!-- End footer -->
-  </footer>
+  </div>
+
+   
 
 <!-- END PAGE CONTENT -->
 </div>
