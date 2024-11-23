@@ -1,5 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+.plan-header-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #2f2f2f;
+    border-radius: 2rem;
+    padding: 10px;
+    gap: 20px;
+}
+
+#days-input{
+    max-width: 40px;
+    max-height: fit-content;
+    min-width: 20px;
+}
+
 #plan-main-container {
     align-content: center;
+    align-items: center;
     height: 100vh;
     background-color: #2f2f2f;
     border-radius: 2rem;
@@ -14,6 +37,7 @@
     align-content: center;
     gap: 20px;
 }
+
 
 /* Style the horizontal scrollbar */
 .horizontal-container::-webkit-scrollbar {
@@ -38,30 +62,27 @@
 
 
 
-/* Columns styling */
 .workout-day-column {
-    display: flexbox;
-    flex-direction: column;
-
-    flex: 0 0 25%;           /* Each column takes up 25% of the container width */
-    min-width: 250px;        /* Minimum width to ensure consistent sizing */
-    border: .50px solid #ccc;  /* Optional: Column border for visibility */
-    box-sizing: border-box;  /* Include padding and border in width calculation */
-    height: fit-content;            /* Optional: Full container height */
-    padding: 10px;           /* Add padding for better spacing */
-    background-color: #171717; /* Optional: Background color for columns */
-
-    align-content: flex-start;
-    
+    display: flex;
+    flex-direction: column;     /* Stack content vertically */
+    flex: 0 0 25%;              /* Fixed width: 25% of container */
+    min-width: 300px;           
+    max-width: 300px;
+    border: 0.5px solid #ccc;   
+    border-radius: 8px;         
+    background-color: #171717;  /* Column background */
+    padding: 10px;              /* Space inside columns */
+    overflow: hidden;           /* Prevent content overflow */
+    height: fit-content;
 }
 
 .column-header {
-    display: grid;
-    grid-column: 2;
-    grid-row: 1;
-    grid-template-columns: 1fr .25fr;
-    padding: 10px;
+    text-align: center;         /* Center the header text */
+    border-bottom: 1px solid #ccc; /* Optional: Divider between header and data */
+    padding: 10px;              /* Spacing inside header */
+    width: 100%;                /* Ensure the header stays within the column */
 }
+
 
 .ll-button {
     /* border: solid 1px; */
@@ -81,17 +102,45 @@
     border: solid 1px;
 }
 
-#coloumn-data-container {
+#column-data-container {
     padding-top: 10px;
-
     display: flex;
     flex-direction: column;
-    
+    gap: 15px;
 }
 
 .column-data {
-    margin: 15px 10px;
-    border: 1px solid ;
+    border: 1px solid #ccc;     
+    border-radius: 4px;         
+    padding: 20px;              
+    width: 100%;                
+    max-width: 100%;            
+    word-wrap: break-word;      /* Ensure text doesn't overflow */
+    min-height: 140px;
+}
+
+.add-exercise-button-container {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    min-height: 20px;
+    border: 1px solid;
     border-radius: 1%;
-    min-height: 160px;
+
+    user-select: none;
+}
+
+.add-exercise-layout {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0px;
+}
+
+
+.add-exercise-button-container:hover {
+    background-color: #525252;
 }
