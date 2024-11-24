@@ -17,7 +17,13 @@ let fitleredExercises = [];
 let EXERCISE_COMPONENT_CNT = 0;
 
 const trashIconClass = 'll-button fa-sharp-duotone fa-solid fa-trash-can fa-lg';
-const trashIconStyle = '--fa-primary-opacity: 2; padding-left: 25px'
+const trashIconStyle = '--fa-primary-opacity: 2; padding-left: 25px';
+
+const expandIconClass = 'll-button fa-solid fa-expand fa-lg';
+const expandIconStyle = '--fa-primary-opacity: 2; padding-left: 5px';
+
+const minimizeIconClass = 'll-button fa-solid fa-minimize';
+const minimizeIconStyle = '--fa-primary-opacity: 2; padding-left: 5px; color: #FFd43b';
 
 // Components
 const innerHTMLExerciseButton = `            
@@ -33,7 +39,6 @@ const innerHTMLColumnHeader = `
                 </div>
 `;
 
-// TODO: Add to this
 const innerHTMLColumnData = `
     <div class="column-data-top-row">
         <span class="exercise-category"></span>
@@ -41,6 +46,18 @@ const innerHTMLColumnData = `
     <hr class="column-data-divider">
     <select class="exercise-value">
     </select>
+`
+const hiddenCardHtml = `
+        <label for="sets">Sets:</label>
+        <input type="number" id="sets" min="1" max="10" />
+        <label for="weight">Weight:</label>
+        <input type="number" id="weight" />
+        <label for="start-reps">Starting Rep Range:</label>
+        <input type="number" id="start-reps" />
+        <label for="end-reps">Ending Rep Range:</label>
+        <input type="number" id="end-reps" />
+        <label for="intensity">Intensity (%):</label>
+        <input type="number" id="intensity" min="0" max="100" />
 `
 
 
@@ -131,37 +148,57 @@ function generateColumns() {
         const column = document.getElementById(columnId);
         const columnContent = column.querySelector('#column-data-container');
 
+        const cardId = `column-${columnId}-exercise-${EXERCISE_COMPONENT_CNT}`;
+
         // Show the modal to select a category
         showModal(categories, (selectedCategory) => {
             // Create new exercise entry
             const exercise = document.createElement('div');
             exercise.className = 'column-data';
             exercise.id = `column-data-${EXERCISE_COMPONENT_CNT}`;
+            exercise.setAttribute('data-id', cardId)
             exercise.innerHTML = innerHTMLColumnData;
 
-            // create trash icon and give its event
+
+            // create trash icon and expand and give its event
             const topRow = exercise.querySelector('.column-data-top-row');
 
-            const icon = document.createElement('i');
-            icon.style = trashIconStyle;
-            icon.className = trashIconClass;
+            const deleteicon = document.createElement('i');
+            deleteicon.style = trashIconStyle;
+            deleteicon.className = trashIconClass;
 
             const columnRowId = `column-data-${EXERCISE_COMPONENT_CNT}`;
-            icon.addEventListener('click', () =>{
+            deleteicon.addEventListener('click', () =>{
                 exercise.remove();
             });
 
-            topRow.appendChild(icon);
+            const expandicon = document.createElement('i');
+            expandicon.style = expandIconStyle;
+            expandicon.className = expandIconClass;
+
+            expandicon.addEventListener('click', () => {
+                exercise.classList.toggle('expanded');
+                if (exercise.classList.contains('expanded')){
+                    expandicon.style = minimizeIconStyle;
+                    expandicon.className = minimizeIconClass;
+                }
+                else {
+                    expandicon.style = expandIconStyle;
+                    expandicon.className = expandIconClass;
+
+                }
+            });
+
+            topRow.appendChild(deleteicon);
+            topRow.appendChild(expandicon);
 
             // Update the category in the new exercise
             const categorySpan = exercise.querySelector('.exercise-category');
             categorySpan.textContent = selectedCategory;
 
             // Populate exercise drop-down
-            //const exerciseSelect = document.createElement('select');
             const exerciseSelect = exercise.querySelector('.exercise-value');
-            //exerciseSelect.className = 'exercise-value';
-            //exerciseSelect.id = `exercise-select-${EXERCISE_COMPONENT_CNT}`;
+
             exercises.forEach(e => {
                 const exerciseOption = document.createElement('option');
                 exerciseOption.className = 'exercise-value-option'
@@ -180,12 +217,43 @@ function generateColumns() {
                 }
             });
 
+            // Create hidden content:
+
+            const expandableContent = document.createElement('div');
+            expandableContent.className = "expandable-content";
+            expandableContent.innerHTML = `        
+                <label for="sets-${cardId}">Sets:</label>
+                <input class="exercise-value-option" type="number" id="sets-${cardId}" min="1" max="10" />
+                <label for="weight-${cardId}">Weight:</label>
+                <input class="exercise-value-option" type="number" id="weight-${cardId}" />
+                <label for="start-reps-${cardId}">Starting Rep Range:</label>
+                <input class="exercise-value-option" type="number" id="start-reps-${cardId}" />
+                <label for="end-reps-${cardId}">Ending Rep Range:</label>
+                <input class="exercise-value-option" type="number" id="end-reps-${cardId}" />
+                <label for="intensity-${cardId}">Intensity (%):</label>
+                <input class="exercise-value-option" type="number" id="intensity-${cardId}" min="0" max="100" />
+                `
+            
+            // Expandable content Append to exercise
+            exercise.appendChild(expandableContent);
+
             // Append to the column's content area
             columnContent.appendChild(exercise);
 
             // Increment the global exercise counter
             EXERCISE_COMPONENT_CNT += 1;
         });
+    }
+
+    function toggleExpandIcon(icon) {
+        if (icon.style === minimizeIconstyle){
+            icon.style = exapndIconStyle;
+            icon.className = exapndIconClass;
+        }
+        else {
+            icon.style = minimizeIconstyle;
+            icon.className = minimizeIconClass;
+        }
     }
 
 

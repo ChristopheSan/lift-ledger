@@ -195,7 +195,7 @@
 .exercise-value-option {
     background-color: #2f2f2f; 
     color: white;              
-    padding: 10px;             
+    padding: 5px;             
     border: none;              
 }
 
@@ -204,7 +204,10 @@
     color: #fff;               
 }
 
-
+option.exercise-value-option {
+    border-radius: 5px;
+    border: 1px solid #444;
+}
 
 .exercise-value:hover, .exercise-value:focus {
     border: 1px solid #4A90E2; /* Highlight border on hover/focus */
@@ -283,3 +286,18 @@
     background: #ff3333;
 }
 
+/* Initially hide the expandable content */
+.expandable-content {
+    max-height: 0; /* Collapse the content */
+    overflow: hidden; /* Hide overflowing content */
+    opacity: 0; /* Make it invisible */
+    transition: max-height 0.3s ease, opacity 0.3s ease; /* Smooth expansion */
+    display: flex;
+    flex-direction: column;
+}
+
+/* When expanded, reveal the content */
+.column-data.expanded .expandable-content {
+    max-height: 340px; /* Adjust based on content height */
+    opacity: 1; /* Make it visible */
+}
